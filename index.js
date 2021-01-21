@@ -6,11 +6,11 @@ const path = require('path');
 
 var client = new TwitchCommandoClient({
     username: 'TwitchBot',
-    oauth: 'Nzc5NDQyNzkyMzI0NjYxMjQ5.X7gmqw.Gqy_Dy0Mt4g_-HTpaUgYS7gjMdc',
+    oauth: '',
     channels: [ '#streaming' ],
     botOwners: [
         'MountainTiger144#2567',
-        `Nimbi#4961`
+        'Nimbi#4961'
     ]
 });
 
