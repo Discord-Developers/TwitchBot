@@ -1,6 +1,8 @@
 # TwitchBot
 Discord Twitch Integration bot built using Discord.js-Commando and Twitch API
 
+<img src="https://raw.githubusercontent.com/Discord-Coding-Community/TwitchBot/main/img/avatar.png">
+
 ## Information
 <p><strong>TwitchBot</strong> is a Stream Notification bot with countless commands and features! There will be twitch chat to discord soon as well as custom twitch widgets/pannels for your stream!</p>
 <p>TwitchBot is built in <strong>discord.js-commando</strong> and is currently owned and operated by the Discord Coding Community Team!</p>
