@@ -19,7 +19,6 @@
     "main": "index.js",
     "dependencies": {
         "discord.js": "^12.5.1",
-        "twitch-commando": "^1.0.12",
         "discord.js-commando": "^0.11.1",
         "eslint": "^7.18.0",
         "sqlite": "^4.0.15",
