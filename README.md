@@ -1,4 +1,4 @@
-# discord-twitch-bot
+# TwitchBot
 
 Uses [discord.js](https://github.com/hydrabolt/discord.js/) and the
 [Twitch API](https://github.com/justintv/Twitch-API) to send a message whenever
