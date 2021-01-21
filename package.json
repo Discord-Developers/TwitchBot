@@ -11,7 +11,7 @@
         "discord",
         "twitch",
         "bot",
-        "twitch-commando"
+        "commando"
     ],
     "scripts": {
         "start": "node --harmony index.js"
