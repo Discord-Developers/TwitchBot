@@ -20,6 +20,6 @@ module.exports = class SayCommand extends commando.Command {
 	}
 
 	run(message, { text }) {
-		return message.send(text);
+		return message.reply(text);
 	}
 };
