@@ -20,9 +20,9 @@ Discord Twitch Integration bot built using Discord.js-Commando and Twitch API
 </ul>
 <p><font size="6">Twitch Commands</font></p>
 <ul>
-  <li>stream: To be implemented</li>
-  <li>chat: To be implemented</li>
-  <li>mod: To me implemented</li>
+  <li>stream [add|remove|list]: To be implemented</li>
+  <li>chat [add|remove|list]: To be implemented</li>
+  <li>mod [add|remove|list]: To me implemented</li>
 </ul>
 <br>
 <p><strong>IMPORTANT NOTICE</strong></p>
