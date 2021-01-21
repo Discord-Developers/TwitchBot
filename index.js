@@ -1,38 +1,33 @@
-const {
-    TwitchCommandoClient, TwtichChatMessage, TwtichChatUser, CommandoSQLiteProvider
-} = require('twitch-commando');
-const sqlite = require('sqlite');
+const { CommandoClient } = require('discord.js-commando');
 const path = require('path');
 
-var client = new TwitchCommandoClient({
-    username: 'TwitchBot',
-    oauth: '',
-    channels: [ '#streaming' ],
-    botOwners: [
-        'MountainTiger144#2567',
-        'Nimbi#4961'
-    ]
+const client = new CommandoClient({
+	commandPrefix: 't!',
+	owner: [
+        '397666065066491905',
+        '465228604721201158'
+    ],
+	invite: 'https://dsc.gg/mtdev',
 });
 
-client.enableVerboseLogging();
+client.registry
+	.registerDefaultTypes()
+	.registerGroups([
+        ['admin', 'Administration'],
+        ['mod', 'Moderation'],
+        ['util', 'Utility'],
+        ['misc', 'Miscellaneous']
+	])
+	.registerDefaultGroups()
+	.registerDefaultCommands()
+	.registerCommandsIn(path.join(__dirname, 'commands'));
 
-client.on('connected', () => {    
+client.once('ready', () => {
+	console.log(`Logged in as ${client.user.tag}! (${client.user.id})`);
+	client.user.setActivity('with Commando');
 });
 
-client.on('join', channel => {
-});
+client.on('error', console.error);
+client.on('debug', console.)
 
-client.on('error', err => {
-});
-
-client.on('message', message => {
-});
-
-client.registerDetaultCommands();
-client.registerCommandsIn(path.join(__dirname, 'commands'));
-
-client.setProvider(
-    sqlite.open(path.join(__dirname, 'database.sqlite3')).then(db => new CommandoSQLiteProvider(db))
-);
-
-client.connect();
+client.login('your-token-goes-here');
