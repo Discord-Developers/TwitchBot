@@ -5,7 +5,6 @@ const discord = require('discord.js');
 
 const client = new CommandoClient({
     commandPrefix: 't!',
-    token: "",
     owner: '465228604721201158',
     invite: 'https://dsc.gg/mtdev',
 });
