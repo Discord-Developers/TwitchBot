@@ -22,7 +22,7 @@ module.exports = class AnnounceCommand extends commando.Command {
   }
 
   run(msg, { text }) {
-    let channel = msg.guild.channels.find(c => c.name === "updates")
+    let channel = msg.guild.cache.channels.find(c => c.name === "updates")
     const embed = new discord.RichEmbed()
       .setAuthor(`TwitchBot`, `https://raw.githubusercontent.com/Discord-Coding-Community/TwitchBot/main/img/avatar.png?size=2048`)
       .setThumbnail(`https://raw.githubusercontent.com/Discord-Coding-Community/TwitchBot/main/img/avatar.png?size=2048`)
