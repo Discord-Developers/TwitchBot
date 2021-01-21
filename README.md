@@ -30,6 +30,7 @@ Discord Twitch Integration bot built using Discord.js-Commando and Twitch API
   <li>help: Displays a list of available commands, or detailed information for a specified command.</li>
   <li>prefix: Shows or sets the command prefix.</li>
   <li>ping: Checks the bot's ping to the Discord server.</li>
+  <li>user-info: Gets information about a user.</li>
 </ul>
 <p><font size="6">Twitch Commands</font></p>
 <ul>

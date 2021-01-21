@@ -16,7 +16,8 @@ client.registry
         ['admin', 'Administration'],
         ['mod', 'Moderation'],
         ['util', 'Utility'],
-        ['misc', 'Miscellaneous']
+        ['misc', 'Miscellaneous'],
+        ['twitch', 'Twitch']
     ])
     .registerDefaultGroups()
     .registerDefaultCommands()
