@@ -5,7 +5,7 @@ const fs = require('fs');
 const client = new CommandoClient({
     commandPrefix: 't!',
     token: "",
-	owner: [
+	owners: [
         '397666065066491905',
         '465228604721201158'
     ],
