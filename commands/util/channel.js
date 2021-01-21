@@ -24,6 +24,6 @@ module.exports = class ChannelCommand extends commando.Command {
 
 	async run(msg, args) {
 		const channel = args.channel;
-		return msg.reply(`${channel.name} (${channel.id})`);
+		return msg.reply(`${channel.name} (${channel.id})`).catch(console.error);
 	}
 };
