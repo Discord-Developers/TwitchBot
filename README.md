@@ -12,13 +12,13 @@ Use `/configure` (see below) to configure the bot for your discord server.
 
 ## Installation
 
-`cd discord-twitch-bot`<br />
+`cd TwitchBot`<br />
 `npm install`
 
 
 ## Usage
 
-`node discord-twitch-bot TOKEN CLIENTID INTERVAL`
+`node TwitchBot TOKEN CLIENTID INTERVAL`
 
 ```
 TOKEN           Discord app bot user token
