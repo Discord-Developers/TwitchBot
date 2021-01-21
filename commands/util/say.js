@@ -5,6 +5,7 @@ module.exports = class SayCommand extends commando.Command {
 		super(client, {
 			name: 'say',
 			aliases: ['shout', 'speak'],
+			userPermissions: ['SEND_MESSAGES'],
 			group: 'util',
 			memberName: 'say',
 			description: 'Replies with the text you provide.',
@@ -19,6 +20,6 @@ module.exports = class SayCommand extends commando.Command {
 	}
 
 	run(message, { text }) {
-		return message.reply(text);
+		return message.send(text);
 	}
 };
