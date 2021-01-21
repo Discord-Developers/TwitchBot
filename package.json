@@ -1,0 +1,37 @@
+{
+    "name": "twitchbot",
+    "version": "1.1.0",
+    "description": "",
+    "author": "Developers United <https://github.com/Developers-United>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Developers-United/TwitchBot"
+    },
+    "bugs": {
+        "url": "https://github.com/Developers-United/TwitchBot/"
+    },
+    "keywords": [
+        "discord",
+        "twitch",
+        "bot",
+        "twitch-commando"
+    ],
+    "scripts": {
+        "start": "node --harmony index.js",
+        "dev": "nodemon index.js"
+    },
+    "main": "index.js",
+    "dependencies": {
+        "discord.js": "^12.5.1",
+        "twitch-commando": "^1.0.12",
+        "discord.js-commando": "@discordjs/Commando",
+        "eslint": "^7.18.0",
+        "sqlite": "^4.0.15"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.7"
+    },
+    "engines": {
+        "node": ">=8.6.0"
+    } 
+}
