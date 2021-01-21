@@ -2,13 +2,10 @@
     "name": "twitchbot",
     "version": "1.1.0",
     "description": "",
-    "author": "Developers United <https://github.com/Developers-United>",
+    "author": "Developers United <https://github.com/Discord-Coding-Community>",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Developers-United/TwitchBot"
-    },
-    "bugs": {
-        "url": "https://github.com/Developers-United/TwitchBot/"
+        "url": "https://github.com/Discord-Coding-Community/TwitchBot"
     },
     "keywords": [
         "discord",
