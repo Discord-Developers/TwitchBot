@@ -34,7 +34,5 @@ client.on('guildCreate', () => {
 
 });
 
-client.on('error', console.log(error));
-client.on('debug', console.log(debug));
-
+client.on('error', console.error);
 client.login(token);
