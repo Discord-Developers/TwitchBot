@@ -24,6 +24,7 @@ module.exports = class AnnounceCommand extends Commando.Command {
     run(msg, { text }) {
         let channel = msg.mentions.channels.first();
         if (!channel) return;
+
         return channel.send(text);
     }
 };
