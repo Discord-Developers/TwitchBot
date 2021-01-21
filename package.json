@@ -14,8 +14,7 @@
         "twitch-commando"
     ],
     "scripts": {
-        "start": "node --harmony index.js",
-        "dev": "nodemon index.js"
+        "start": "node --harmony index.js"
     },
     "main": "index.js",
     "dependencies": {
@@ -23,10 +22,8 @@
         "twitch-commando": "^1.0.12",
         "discord.js-commando": "^0.11.1",
         "eslint": "^7.18.0",
-        "sqlite": "^4.0.15"
-    },
-    "devDependencies": {
-        "nodemon": "^2.0.7"
+        "sqlite": "^4.0.15",
+        "common-tags": "^1.8.0"
     },
     "engines": {
         "node": ">=8.6.0"
