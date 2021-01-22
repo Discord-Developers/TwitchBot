@@ -21,7 +21,6 @@
     "dependencies": {
         "discord.js": "^12.5.1",
         "twitch-commando": "^1.0.12",
-        "discord.js-commando": "@discordjs/commando",
         "eslint": "^7.18.0",
         "sqlite": "^4.0.15",
         "common-tags": "^1.8.0",
