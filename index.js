@@ -1,4 +1,5 @@
 const { TwitchCommandoClient, TwitchChatUser, TwitchChatMessage, CommandoSQLiteProvider } = require('twitch-commando');
+require('discord.js');
 const sqlite = require('sqlite');
 const path = require('path');
 require('dotenv').config();
@@ -36,10 +37,12 @@ client.on('error', err => {
 client.on('message', message => {
 });
 
+client.registerGroups();
 client.registerDetaultCommands();
 // client.registerCommandsIn(path.join(__dirname, 'commands'));
 // 
 // client.setProvider(
 //     sqlite.open(path.join(__dirname, 'database.sqlite3')).then(db => new CommandoSQLiteProvider(db))
 // );
+
 client.connect(TOKEN);
