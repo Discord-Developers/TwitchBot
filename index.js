@@ -42,5 +42,4 @@ client.registerDetaultCommands();
 // client.setProvider(
 //     sqlite.open(path.join(__dirname, 'database.sqlite3')).then(db => new CommandoSQLiteProvider(db))
 // );
-
 client.connect(TOKEN);
