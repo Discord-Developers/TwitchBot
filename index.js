@@ -1,7 +1,5 @@
-const TwitchCommandoClient = require('twitch-commando');
-const TwitchChatUser = require('twitch-commando');
-const TwitchChatMessage = require('twitch-commando');
-const CommandoSQLiteProvider = require('twitch-commando');
+const { TwitchCommandoClient, TwitchChatUser, TwitchChatMessage, CommandoSQLiteProvider } = require('twitch-commando');
+require('enmap');
 const sqlite = require('sqlite');
 const path = require('path');
 require('dotenv').config();
@@ -15,7 +13,7 @@ const CH1 = process.env.CHANNEL_1;
 const CH2 = process.env.CHANNEL_2;
 const CH3 = process.env.CHANNEL_3;
 
-const client = new TwitchCommandoClient({
+var client = new TwitchCommandoClient({
     username: USER,
     commandPrefix: PREFIX,
     oauth: AUTH,
