@@ -1,5 +1,7 @@
-const { TwitchCommandoClient, TwitchChatUser, TwitchChatMessage, CommandoSQLiteProvider } = require('twitch-commando');
-require('discord.js');
+const TwitchCommandoClient = require('twitch-commando');
+const TwitchChatUser = require('twitch-commando');
+const TwitchChatMessage = require('twitch-commando');
+const CommandoSQLiteProvider = require('twitch-commando');
 const sqlite = require('sqlite');
 const path = require('path');
 require('dotenv').config();
@@ -13,7 +15,7 @@ const CH1 = process.env.CHANNEL_1;
 const CH2 = process.env.CHANNEL_2;
 const CH3 = process.env.CHANNEL_3;
 
-var client = new TwitchCommandoClient({
+const client = new TwitchCommandoClient({
     username: USER,
     commandPrefix: PREFIX,
     oauth: AUTH,
@@ -22,21 +24,24 @@ var client = new TwitchCommandoClient({
 });
 
 client.enableVerboseLogging();
-client.on('connected', () => {    
+
+client.on('connected', () => {
 });
+
 client.on('join', channel => {
 });
+
 client.on('error', err => {
 });
+
 client.on('message', message => {
 });
 
-client.registerGroups();
 client.registerDetaultCommands();
-// client.registerCommandsIn(path.join(__dirname, 'commands'));
-// 
-// client.setProvider(
-//     sqlite.open(path.join(__dirname, 'database.sqlite3')).then(db => new CommandoSQLiteProvider(db))
-// );
+client.registerCommandsIn(path.join(__dirname, 'commands'));
+
+client.setProvider(
+    sqlite.open(path.join(__dirname, 'database.sqlite3')).then(db => new CommandoSQLiteProvider(db))
+).catch(console.error);
 
 client.connect(TOKEN);
