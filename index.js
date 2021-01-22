@@ -10,26 +10,21 @@ const owner_id_1 = process.env.OWNER_ID_1;
 const owner_id_2 = process.env.OWNER_ID_2;
 
 
-const Client = new TwitchCommandoClient({
+
+const client = new TwitchCommandoClient({
     commandPrefix: prefix,
     oauth: auth,
-    channels: ['#', '#', '#'],
+    channels: ['#👋｜welcome', '#📣｜streaming', '#💼｜modlog'],
     botOwners: [owner_id_1, owner_id_2],
     invite: 'https://dsc.gg/mtdev',
     disableEveryone: true
 });
 
-client.on('connected', () => {
-});
-client.on('join', channel => {
-});
-client.on('error', err => {
-});
-client.on('message', message => {
-});
 
 client.registerDetaultCommands();
-client.registerCommandsIn(path.join(__dirname, 'commando'));
+client.registerCommandsIn(path.join(__dirname, 'commando/twitch'));
+
+
 
 
 const events = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
@@ -43,6 +38,15 @@ for (const file of events) {
 client.setProvider(
     sqlite.open(path.join(__dirname, 'database.sqlite3')).then(db => new CommandoSQLiteProvider(db))
 );
+
+client.on('connected', () => {
+});
+client.on('join', channel => {
+});
+client.on('error', err => {
+});
+client.on('message', message => {
+});
 
 client.on('error', console.error);
 client.connect(token);
