@@ -1,4 +1,4 @@
-const { TwitchCommandoClient, TwitchChatUser, TwitchChatMessage, CommandoSQLiteProvider } = require('twitch-commando');
+const { client, TwitchChatUser, TwitchChatMessage, CommandoSQLiteProvider } = require('twitch-commando');
 const sqlite = require('sqlite');
 const path = require('path');
 const fs = require('fs');
@@ -9,12 +9,14 @@ const auth = process.env.OAUTH_TOKEN;
 const owner_id_1 = process.env.OWNER_ID_1;
 const owner_id_2 = process.env.OWNER_ID_2;
 
-const client = new TwitchCommandoClient({
+
+const Client = new TwitchCommandoClient({
     commandPrefix: prefix,
     oauth: auth,
     channels: ['#', '#', '#'],
     botOwners: [owner_id_1, owner_id_2],
     invite: 'https://dsc.gg/mtdev',
+    disableEveryone: true
 });
 
 client.on('connected', () => {
@@ -27,7 +29,7 @@ client.on('message', message => {
 });
 
 client.registerDetaultCommands();
-client.registerCommandsIn(path.join(__dirname, 'commands'));
+client.registerCommandsIn(path.join(__dirname, 'commando'));
 
 
 const events = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
