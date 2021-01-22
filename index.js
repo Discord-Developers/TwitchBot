@@ -2,20 +2,24 @@ const { TwitchCommandoClient, TwitchChatUser, TwitchChatMessage, CommandoSQLiteP
 const sqlite = require('sqlite');
 const path = require('path');
 require('dotenv').config();
-const token = process.env.CLIENT_TOKEN;
-const auth = process.env.OAUTH_TOKEN;
-const user = process.env.CLIENT_USERNAME;
-const owner_1 = process.env.OWNER_ID_1;
-const owner_2 = process.env.OWNER_ID_2;
+const TOKEN = process.env.CLIENT_TOKEN;
+const PREFIX = process.env.CLIENT_PREFIX;
+const AUTH = process.env.OAUTH_TOKEN;
+const USER = process.env.CLIENT_USERNAME;
+const OWN1 = process.env.OWNER_ID_1;
+const OWN2 = process.env.OWNER_ID_2;
+const CH1 = process.env.CHANNEL_1;
+const CH2 = process.env.CHANNEL_2;
+const CH3 = process.env.CHANNEL_3;
 
 
 
 var client = new TwitchCommandoClient({
-    username: user,
-    commandPrefix: '!',
-    oauth: auth,
-    channels: ['#👋｜welcome', '#📣｜streaming', '#💼｜modlog'],
-    botOwners: [owner_1, owner_2]
+    username: USER,
+    commandPrefix: PREFIX,
+    oauth: AUTH,
+    channels: [CH1, CH2, CH3],
+    botOwners: [OWN1, OWN2]
 });
 
 client.enableVerboseLogging();
@@ -33,10 +37,10 @@ client.on('message', message => {
 });
 
 client.registerDetaultCommands();
-client.registerCommandsIn(path.join(__dirname, 'commands'));
+// client.registerCommandsIn(path.join(__dirname, 'commands'));
+// 
+// client.setProvider(
+//     sqlite.open(path.join(__dirname, 'database.sqlite3')).then(db => new CommandoSQLiteProvider(db))
+// );
 
-client.setProvider(
-    sqlite.open(path.join(__dirname, 'database.sqlite3')).then(db => new CommandoSQLiteProvider(db))
-);
-
-client.connect(token);
+client.connect(TOKEN);
