@@ -1,5 +1,5 @@
 const discord = require('discord.js');
-const Commando = require('discord.js-commando');
+const Commando = require('twitch-commando');
 
 module.exports = class broadcastCommand extends Commando.Command {
     constructor(client) {

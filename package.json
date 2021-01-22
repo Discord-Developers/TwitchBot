@@ -8,9 +8,10 @@
         "url": "https://github.com/Discord-Coding-Community/TwitchBot"
     },
     "keywords": [
-        "discord",
         "twitch",
         "bot",
+        "chatbot",
+        "chat",
         "commando"
     ],
     "scripts": {
@@ -19,11 +20,23 @@
     "main": "index.js",
     "dependencies": {
         "discord.js": "^12.5.1",
-        "discord.js-commando": "^0.11.1",
+        "twitch-commando": "^1.0.12",
         "eslint": "^7.18.0",
         "sqlite": "^4.0.15",
-        "common-tags": "^1.8.0"
+        "common-tags": "^1.8.0",
+        "better-queue": "^3.8.10",
+        "express": "^4.17.1",
+        "node-fetch": "^2.6.0",
+        "recursive-readdir-sync": "^1.0.6",
+        "recursive-readdir-synchronous": "0.0.4",
+        "sleep": "^6.1.0",
+        "tmi.js": "^1.5.0",
+        "winston": "^3.2.1"
     },
+    "devDependencies": {
+        "clean-documentation-theme": "^0.5.2",
+        "jsdoc": "^3.6.3"
+      },
     "engines": {
         "node": "^12.0.0"
     } 

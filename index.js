@@ -1,26 +1,33 @@
-const { CommandoClient } = require('discord.js-commando');
+const { TwitchCommandoClient, TwitchChatUser, TwitchChatMessage, CommandoSQLiteProvider } = require('twitch-commando');
+const sqlite = require('sqlite');
 const path = require('path');
 const fs = require('fs');
-const discord = require('discord.js');
+require('dotenv').config();
+const token = process.env.CLIENT_TOKEN;
+const prefix = process.env.CLIENT_PREFIX;
+const auth = process.env.OAUTH_TOKEN;
+const owner_id_1 = process.env.OWNER_ID_1;
+const owner_id_2 = process.env.OWNER_ID_2;
 
-const client = new CommandoClient({
-    commandPrefix: 't!',
-    owner: '465228604721201158',
+const client = new TwitchCommandoClient({
+    commandPrefix: prefix,
+    oauth: auth,
+    channels: ['#', '#', '#'],
+    botOwners: [owner_id_1, owner_id_2],
     invite: 'https://dsc.gg/mtdev',
 });
 
-client.registry
-    .registerDefaultTypes()
-    .registerGroups([
-        ['admin', 'Administration'],
-        ['mod', 'Moderation'],
-        ['util', 'Utility'],
-        ['misc', 'Miscellaneous'],
-        ['twitch', 'Twitch']
-    ])
-    .registerDefaultGroups()
-    .registerDefaultCommands()
-    .registerCommandsIn(path.join(__dirname, 'commands'));
+client.on('connected', () => {
+});
+client.on('join', channel => {
+});
+client.on('error', err => {
+});
+client.on('message', message => {
+});
+
+client.registerDetaultCommands();
+client.registerCommandsIn(path.join(__dirname, 'commands'));
 
 
 const events = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
@@ -31,6 +38,9 @@ for (const file of events) {
     client.on(file.split(".")[0], event.bind(null, client));
 };
 
+client.setProvider(
+    sqlite.open(path.join(__dirname, 'database.sqlite3')).then(db => new CommandoSQLiteProvider(db))
+);
 
 client.on('error', console.error);
-client.login('');
+client.connect(token);
