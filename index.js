@@ -13,8 +13,6 @@ const CH1 = process.env.CHANNEL_1;
 const CH2 = process.env.CHANNEL_2;
 const CH3 = process.env.CHANNEL_3;
 
-
-
 var client = new TwitchCommandoClient({
     username: USER,
     commandPrefix: PREFIX,
@@ -24,16 +22,12 @@ var client = new TwitchCommandoClient({
 });
 
 client.enableVerboseLogging();
-
 client.on('connected', () => {    
 });
-
 client.on('join', channel => {
 });
-
 client.on('error', err => {
 });
-
 client.on('message', message => {
 });
 
