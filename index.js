@@ -1,31 +1,27 @@
-const { TwitchCommandoClient, TwitchChatUser, TwitchChatMessage } = require('twitch-commando');
-require('./.eslintrc.json');
+const { TwitchCommandoClient } = require('twitch-commando');
 const path = require('path');
+
+require('./.eslintrc.json');
 require('dotenv').config();
+
 const env1 = process.env.CLIENT_NAME;
 const env2 = process.env.CLIENT_TOKEN;
 const env3 = process.env.CLIENT_PREFIX;
 const env4 = process.env.OAUTH_PASSWORD;
 const env5 = process.env.OWNER_1;
 const env6 = process.env.OWNER_2;
-const env7 = process.env.DISABLE_EVERYONE;
-const env8 = process.env.UNKNOWN_COMMAND_RESPONSE;
 
-
-
-
-var client = new TwitchCommandoClient({
+const client = new TwitchCommandoClient({
     username: env1,
-    commandPrefix: env2,
+    commandPrefix: env3,
     oauth: env4,
+    channels: [''],
     botOwners: [env5, env6],
-    disableEveryone: env7,
-    unknownCommandResponse: env8
+    botAutoJoinChannels: false,
+    botEnableJoinCommand: true,
+    disableEveryone: true,
+    unknownCommandResponse: false
 });
-
-client.enableVerboseLogging();
-
-
 
 client.registerDetaultCommands();
 client.registerCommandsIn(path.join(__dirname, 'commands'));
@@ -42,30 +38,5 @@ client.on("ready", function () {
             inviteLink = link;
         });
 });
-
-client.on("reconnecting", function () {
-    console.log(`client tries to reconnect to the WebSocket`);
-});
-
-client.on("resume", function (replayed) {
-    console.log(`whenever a WebSocket resumes, ${replayed} replays`);
-});
-
-client.on("warn", function (info) {
-    console.log(`warn: ${info}`);
-});
-
-client.on("debug", function (info) {
-    console.log(`debug -> ${info}`);
-});
-
-client.on("error", function (error) {
-    console.error(`client's WebSocket encountered a connection error: ${error}`);
-});
-
-client.on("message", function (message) {
-    console.log(`message is created -> ${message}`);
-});
-
 
 client.connect(env2).catch(console.error);
