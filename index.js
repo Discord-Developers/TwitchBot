@@ -30,7 +30,7 @@ client.enableVerboseLogging();
 client.registerDetaultCommands();
 client.registerCommandsIn(path.join(__dirname, 'commands'));
 client.setProvider(
-    sqlite.open(path.join(__dirname, 'database.sqlite3')).then(db => new CommandoSQLiteProvider(db))
+    sqlite.open(path.join(__dirname, 'database')).then(db => new CommandoSQLiteProvider(db))
 );
 
 
