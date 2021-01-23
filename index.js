@@ -7,7 +7,7 @@ require('dotenv').config();
 const fs = require('fs');
 const TOKEN = process.env.CLIENT_TOKEN;
 const PREFIX = process.env.CLIENT_PREFIX;
-const AUTH = process.env.OAUTH_TOKEN;
+const AUTH = process.env.OAUTH_PASSWORD;
 const USER = process.env.CLIENT_USERNAME;
 const OWN1 = process.env.OWNER_ID_1;
 const OWN2 = process.env.OWNER_ID_2;
@@ -26,21 +26,6 @@ var client = new TwitchCommandoClient({
 });
 
 client.enableVerboseLogging();
-
-client.error = new Map();
-client.logchannel = [ERROR_GUILD, ERROR_CHANNEL];
-client.on('message', async message => {
-    try {
-        if (message.author.bot) return;
-        if (message.content === "!notwork") return message.chanel.send("ddd");
-
-    } catch (error) {
-        handle.createrr(client, message.guild.id, message.content, error)
-    }
-});
-process.on('unhandledRejection', error => {
-    handle.createrr(client, undefined, undefined, error)
-});
 
 client.registerDetaultCommands();
 client.registerCommandsIn(path.join(__dirname, 'commands'));
