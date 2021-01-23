@@ -1,3 +1,16 @@
+# Config Files
 .env
+
+# Directories
 *node_modules/
+*.vscode/
+*.idea/
+*database/
+
+# JSON Files
 package-lock.json
+
+# Database Files
+*.sqlite
+*.sqlite3
+*.db

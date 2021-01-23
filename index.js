@@ -4,18 +4,25 @@ const sqlite = require('sqlite');
 const path = require('path');
 require('dotenv').config();
 const fs = require('fs');
-const TOKEN = process.env.CLIENT_TOKEN;
-const env1 = process.env.OWNER_1;
-const env2 = process.env.OWNER_2;
+const env1 = process.env.CLIENT_NAME;
+const env2 = process.env.CLIENT_TOKEN;
+const env3 = process.env.CLIENT_PREFIX;
+const env4 = process.env.OAUTH_PASSWORD;
+const env5 = process.env.OWNER_1;
+const env6 = process.env.OWNER_2;
+const env7 = process.env.DISABLE_EVERYONE;
+const env8 = process.env.UNKNOWN_COMMAND_RESPONSE;
+
+
+
 
 var client = new TwitchCommandoClient({
-    username: 'TwitchBot',
-    commandPrefix: '!',
-    oauth: '',
-    channels: '',
-    botOwners: [env1, env2],
-    disableEveryone: true,
-    unknownCommandResponse: false
+    username: env1,
+    commandPrefix: env2,
+    oauth: env4,
+    botOwners: [env5, env6],
+    disableEveryone: env7,
+    unknownCommandResponse: env8
 });
 
 client.enableVerboseLogging();
