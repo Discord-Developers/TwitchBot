@@ -14,8 +14,6 @@ const OWN2 = process.env.OWNER_ID_2;
 const CH1 = process.env.CHANNEL_1;
 const CH2 = process.env.CHANNEL_2;
 const CH3 = process.env.CHANNEL_3;
-const ERROR_CHANNEL = process.nextTick.CHANNEL_ID;
-const ERROR_GUILD = process.env.GUILD_ID;
 
 var client = new TwitchCommandoClient({
     username: USER,
