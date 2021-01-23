@@ -20,7 +20,9 @@ var client = new TwitchCommandoClient({
     commandPrefix: PREFIX,
     oauth: AUTH,
     channels: [CH1, CH2, CH3],
-    botOwners: [OWN1, OWN2]
+    botOwners: [OWN1, OWN2],
+    disableEveryone: true,
+    unknownCommandResponse: false
 });
 
 client.enableVerboseLogging();
