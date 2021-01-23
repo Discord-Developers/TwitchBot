@@ -18,9 +18,13 @@ var client = new TwitchCommandoClient({
     unknownCommandResponse: false
 });
 
-
-
 client.enableVerboseLogging();
+
+client.setProvider(sqlite.open(path.join(__dirname, 'database')).then(db => new CommandoSQLiteProvider(db))
+);
+
+client.registerDetaultCommands();
+client.registerCommandsIn(path.join(__dirname, 'commands'));
 
 client.on("ready", function () {
     console.log(`the client becomes ready to start`);
@@ -59,12 +63,5 @@ client.on("message", function (message) {
     console.log(`message is created -> ${message}`);
 });
 
-
-client.registerDetaultCommands();
-client.registerCommandsIn(path.join(__dirname, 'commands'));
-
-
-client.setProvider(sqlite.open(path.join(__dirname, 'database')).then(db => new CommandoSQLiteProvider(db))
-);
 
 client.connect(TOKEN).catch(console.error);
