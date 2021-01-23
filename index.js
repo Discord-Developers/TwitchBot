@@ -1,9 +1,7 @@
-const { TwitchCommandoClient, TwitchChatUser, TwitchChatMessage, CommandoSQLiteProvider } = require('twitch-commando');
-const eslint = require('eslint');
-const sqlite = require('sqlite');
+const { TwitchCommandoClient, TwitchChatUser, TwitchChatMessage } = require('twitch-commando');
+require('./.eslintrc.json');
 const path = require('path');
 require('dotenv').config();
-const fs = require('fs');
 const env1 = process.env.CLIENT_NAME;
 const env2 = process.env.CLIENT_TOKEN;
 const env3 = process.env.CLIENT_PREFIX;
@@ -27,8 +25,7 @@ var client = new TwitchCommandoClient({
 
 client.enableVerboseLogging();
 
-client.setProvider(sqlite.open(path.join(__dirname, './database/.db')).then(db => new CommandoSQLiteProvider(db))
-);
+
 
 client.registerDetaultCommands();
 client.registerCommandsIn(path.join(__dirname, 'commands'));
@@ -38,7 +35,7 @@ client.on("ready", function () {
     console.log(`I am ready! Logged in as ${client.user.tag}!`);
     console.log(`Bot has started, with ${client.users.cache.size} users, in ${client.channels.cache.size} channels of ${client.guilds.cache.size} guilds.`);
 
-    client.user.setActivity("the upright organ");
+    client.user.setActivity(`${client.user.tag} | ${process.env.WEBSITE_URL}`);
     client.generateInvite(['SEND_MESSAGES', 'MANAGE_GUILD', 'MENTION_EVERYONE'])
         .then(link => {
             console.log(`Generated bot invite link: ${link}`);
