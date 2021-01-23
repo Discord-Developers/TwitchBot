@@ -1,8 +1,10 @@
 const { TwitchCommandoClient, TwitchChatUser, TwitchChatMessage, CommandoSQLiteProvider } = require('twitch-commando');
 require('enmap');
+const handle = require("discord-error-handler");
 const sqlite = require('sqlite');
 const path = require('path');
 require('dotenv').config();
+const fs = require('fs');
 const TOKEN = process.env.CLIENT_TOKEN;
 const PREFIX = process.env.CLIENT_PREFIX;
 const AUTH = process.env.OAUTH_TOKEN;
@@ -23,23 +25,46 @@ var client = new TwitchCommandoClient({
 
 client.enableVerboseLogging();
 
-client.on('connected', () => {
-});
+client.error = new Map();
+client.logchannel = ["775844088338972693", "802340594504040488"];
+client.on('message', async message => {
+    try {
+        if (message.author.bot) return;
+        if (message.content === "!notwork") return message.chanel.send("ddd");
 
-client.on('join', channel => {
+    } catch (error) {
+        handle.createrr(client, message.guild.id, message.content, error)
+    }
 });
-
-client.on('error', err => {
-});
-
-client.on('message', message => {
+process.on('unhandledRejection', error => {
+    handle.createrr(client, undefined, undefined, error)
 });
 
 client.registerDetaultCommands();
 client.registerCommandsIn(path.join(__dirname, 'commands'));
+// client.setProvider(
+//     sqlite.open(path.join(__dirname, 'database.sqlite3')).then(db => new CommandoSQLiteProvider(db))
+// );
 
-client.setProvider(
-    sqlite.open(path.join(__dirname, 'database.sqlite3')).then(db => new CommandoSQLiteProvider(db))
-).catch(console.error);
+
+
+fs.readdir('./events/', (err, files) => {
+    if (err) return console.error(err);
+    files.forEach(file => {
+        const eventFunction = require(`./events/${file}`);
+        if (eventFunction.disabled) return;
+
+        const event = eventFunction.event || file.split('.')[0];
+        const emitter = (typeof eventFunction.emitter === 'string' ? client[eventFunction.emitter] : eventFunction.emitter) || client;
+        const once = eventFunction.once;
+
+        try {
+            emitter[once ? 'once' : 'on'](event, (...args) => eventFunction.run(...args));
+        } catch (error) {
+            console.error(error.stack);
+        }
+    });
+});
+
 
 client.connect(TOKEN);
