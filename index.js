@@ -27,7 +27,7 @@ var client = new TwitchCommandoClient({
 
 client.enableVerboseLogging();
 
-client.setProvider(sqlite.open(path.join(__dirname, 'database')).then(db => new CommandoSQLiteProvider(db))
+client.setProvider(sqlite.open(path.join(__dirname, './database/.db')).then(db => new CommandoSQLiteProvider(db))
 );
 
 client.registerDetaultCommands();
@@ -71,4 +71,4 @@ client.on("message", function (message) {
 });
 
 
-client.connect(TOKEN).catch(console.error);
+client.connect(env2).catch(console.error);
