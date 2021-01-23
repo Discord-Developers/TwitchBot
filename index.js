@@ -6,21 +6,15 @@ const path = require('path');
 require('dotenv').config();
 const fs = require('fs');
 const TOKEN = process.env.CLIENT_TOKEN;
-const PREFIX = process.env.CLIENT_PREFIX;
-const AUTH = process.env.OAUTH_PASSWORD;
-const USER = process.env.CLIENT_USERNAME;
-const OWN1 = process.env.OWNER_ID_1;
-const OWN2 = process.env.OWNER_ID_2;
-const CH1 = process.env.CHANNEL_1;
-const CH2 = process.env.CHANNEL_2;
-const CH3 = process.env.CHANNEL_3;
+const env1 = process.env.OWNER_1;
+const env2 = process.env.OWNER_2;
 
 var client = new TwitchCommandoClient({
-    username: USER,
-    commandPrefix: PREFIX,
-    oauth: AUTH,
-    channels: [CH1, CH2, CH3],
-    botOwners: [OWN1, OWN2],
+    username: 'TwitchBot',
+    commandPrefix: '!',
+    oauth: 'database/oath.db',
+    channels: 'database/channels.db',
+    botOwners: [env1, env2],
     disableEveryone: true,
     unknownCommandResponse: false
 });
