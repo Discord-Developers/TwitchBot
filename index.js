@@ -12,8 +12,8 @@ const env2 = process.env.OWNER_2;
 var client = new TwitchCommandoClient({
     username: 'TwitchBot',
     commandPrefix: '!',
-    oauth: 'database/oath.db',
-    channels: 'database/channels.db',
+    oauth: './database/oath.db',
+    channels: './database/channels.db',
     botOwners: [env1, env2],
     disableEveryone: true,
     unknownCommandResponse: false
