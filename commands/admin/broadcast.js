@@ -1,12 +1,13 @@
 const discord = require('discord.js');
-const { TwitchChatCommand } = require('twitch-commando');
+const { Command } = require('discord.js-commando');
 
-module.exports = class broadcastCommand extends TwitchChatCommand {
+module.exports = class broadcastCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'broadcast',
             aliases: ['bcastall', 'bcast', 'bc', 'bca'],
             group: 'admin',
+            memberName: 'broadcast',
             guildOnly: true,
             clientPermissions: ['MANAGE_CHANNELS'],
             userPermissions: ['MANAGE_CHANNELS'],

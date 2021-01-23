@@ -1,6 +1,6 @@
-const { TwitchChatCommand } = require('twitch-commando');
+const { Command } = require('discord.js-commando');
 
-module.exports = class SayCommand extends TwitchChatCommand {
+module.exports = class SayCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'say',

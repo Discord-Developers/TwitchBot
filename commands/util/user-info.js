@@ -1,7 +1,7 @@
 const stripIndents = require('common-tags').stripIndents;
-const { TwitchChatCommand } = require('twitch-commando');
+const { Command } = require('discord.js-commando');
 
-module.exports = class UserInfoCommand extends TwitchChatCommand {
+module.exports = class UserInfoCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'user-info',

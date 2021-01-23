@@ -21,11 +21,17 @@
     "main": "index.js",
     "dependencies": {
         "common-tags": "^1.8.0",
+        "util": "0.12.3",
         "discord.js": "^12.5.1",
+        "moment": "2.29.1",
         "dotenv": "^8.2.0",
+        "chalk": "4.1.0",
         "eslint": "^7.18.0",
         "node-fetch": "^2.6.0",
-        "twitch-commando": "^1.0.12"
+        "twitch-commando": "^1.0.12",
+        "discord.js-commando": "0.11.1",
+        "sqlite": "4.0.15",
+        "sqlite3": "5.0.1"
     },
     "devDependencies": {
         "nodemon": "^2.0.7"

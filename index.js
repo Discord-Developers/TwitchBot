@@ -1,42 +1,74 @@
-const { TwitchCommandoClient } = require('twitch-commando');
+if (Number(process.version.slice(1).split(".")[0]) < 12) throw new Error("Node 12.0.0 or higher is required. Update Node on your system.");
+
+const { CommandoClient, Commando } = require('discord.js-commando');
+const sqlite = require('sqlite');
+const { promisify } = require("util");
+const readdir = promisify(require("fs").readdir);
+const Enmap = require("enmap");
 const path = require('path');
+
 
 require('./.eslintrc.json');
 require('dotenv').config();
 
-const env1 = process.env.CLIENT_NAME;
-const env2 = process.env.CLIENT_TOKEN;
-const env3 = process.env.CLIENT_PREFIX;
-const env4 = process.env.OAUTH_PASSWORD;
-const env5 = process.env.OWNER_1;
-const env6 = process.env.OWNER_2;
 
-const client = new TwitchCommandoClient({
-    username: env1,
-    commandPrefix: env3,
-    oauth: env4,
-    channels: [''],
-    botOwners: [env5, env6],
-    botAutoJoinChannels: false,
-    botEnableJoinCommand: true,
-    disableEveryone: true,
-    unknownCommandResponse: false
-});
+const TOKEN = process.env.CLIENT_TOKEN;
+const PREFIX = process.env.CLIENT_PREFIX;
+const OWNER_ID = process.env.OWNER;
 
-client.registerDetaultCommands();
-client.registerCommandsIn(path.join(__dirname, 'commands'));
 
-client.on("ready", function () {
-    console.log(`the client becomes ready to start`);
-    console.log(`I am ready! Logged in as ${client.user.tag}!`);
-    console.log(`Bot has started, with ${client.users.cache.size} users, in ${client.channels.cache.size} channels of ${client.guilds.cache.size} guilds.`);
 
-    client.user.setActivity(`${client.user.tag} | ${process.env.WEBSITE_URL}`);
-    client.generateInvite(['SEND_MESSAGES', 'MANAGE_GUILD', 'MENTION_EVERYONE'])
-        .then(link => {
-            console.log(`Generated bot invite link: ${link}`);
-            inviteLink = link;
-        });
-});
 
-client.connect(env2).catch(console.error);
+
+
+const init = async () => {
+
+    const client = await new CommandoClient({
+        commandPrefix: PREFIX,
+        owner: OWNER_ID,
+        disableEveryone: true,
+        unknownCommandResponse: false
+    });
+
+    client.registry
+        .registerDefaultTypes()
+        .registerGroups([
+            ['admin', 'Administration'],
+            ['mod', 'Moderation'],
+            ['util', 'Utility'],
+            ['misc', 'Miscellaneous'],
+            ['twitch', 'Twitch']
+        ])
+        .registerDefaultGroups()
+        .registerDefaultCommands()
+        .registerCommandsIn(path.join(__dirname, 'commands'));
+
+
+    client.commands = new Enmap();
+    client.aliases = new Enmap();
+    client.settings = new Enmap({ name: "settings" });
+
+    client.logger = require("./modules/Logger.js");
+    require("./modules/functions.js")(client);
+
+    client.setProvider(sqlite.open(path.join(__dirname, 'settings.sqlite3'))
+        .then(db => new Commando.SQLiteProvider(db)))
+        .catch(console.error);
+
+    const evtFiles = await readdir("./events/");
+    client.logger.log(`Loading a total of ${evtFiles.length} events.`);
+    evtFiles.forEach(file => {
+        const eventName = file.split(".")[0];
+        client.logger.log(`Loading Event: ${eventName}`);
+        const event = require(`./events/${file}`);
+        // Bind the client to any event, before the existing arguments
+        // provided by the discord.js event. 
+        // This line is awesome by the way. Just sayin'.
+        client.on(eventName, event.bind(null, client));
+
+        client.login(TOKEN).catch(console.error);
+    });
+
+};
+
+init();
