@@ -10,6 +10,10 @@ module.exports = class CreateChannelCommand extends Command {
 			description: 'Creates a channel.',
 			examples: ['create-channel Test channel'],
 			guildOnly: true,
+			throttling: {
+				usages: 1,
+				duration: 3
+			},
 			clientPermissions: ['MANAGE_CHANNELS'],
 			userPermissions: ['MANAGE_CHANNELS'],
 

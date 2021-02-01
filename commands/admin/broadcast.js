@@ -11,6 +11,10 @@ module.exports = class broadcastCommand extends Command {
             guildOnly: true,
             clientPermissions: ['MANAGE_CHANNELS'],
             userPermissions: ['MANAGE_CHANNELS'],
+            throttling: {
+				usages: 1,
+				duration: 10
+			},
             description: 'Sends a global tts broadcast to all text channels in the guild.',
             examples: ['bc TESTING GLOBAL BROADCAST!'],
             args: [

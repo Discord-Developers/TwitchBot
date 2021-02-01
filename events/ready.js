@@ -1,9 +1,10 @@
 require('dotenv').config;
+PREFIX = process.env.CLIENT_PREFIX
 
 module.exports = async (client) => {
-    console.log(`the client becomes ready to start`);
+    console.log(`I am preparing to start....`);
     console.log(`I am ready! Logged in as ${client.user.tag}!`);
-    console.log(`Bot has started, with ${client.users.cache.size} users, in ${client.channels.cache.size} channels of ${client.guilds.cache.size} guilds.`);
+    console.log(`${client.user.tag} has started, with ${client.users.cache.size} users, in ${client.channels.cache.size} channels of ${client.guilds.cache.size} guilds.`);
 
-    client.user.setActivity(`${process.env.CLIENT_PREFIX}help | ${process.env.WEBSITE_URL}`);
+    client.user.setActivity(`${PREFIX}help for ${client.users.cache.size} users, in ${client.channels.cache.size} channels of ${client.guilds.cache.size} guilds.`);
 };

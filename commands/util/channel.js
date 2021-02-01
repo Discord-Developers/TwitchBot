@@ -10,7 +10,10 @@ module.exports = class ChannelCommand extends Command {
 			description: 'Gets information about a channel.',
 			examples: ['channel #test', 'channel test'],
 			guildOnly: true,
-
+			throttling: {
+				usages: 1,
+				duration: 3
+			},
 			args: [
 				{
 					key: 'channel',
