@@ -5,19 +5,24 @@ const PREFIX = process.env.CLIENT_PREFIX;
 
 module.exports = (client) => {
 
-    let defaultChannel = "";
-    guild.channels.cache.forEach((channel) => {
-        if (channel.type == "text" && defaultChannel == "") {
-            if (channel.permissionsFor(guild.me).has("SEND_MESSAGES")) {
-                defaultChannel = channel;
-            }
+    let channelID;
+    let channels = guild.channels.cache;
+
+    channelLoop:
+    for (let key in channels) {
+        let c = channels[key];
+        if (c[1].type === "text") {
+            channelID = c[0];
+            break channelLoop;
         }
-    })
+    }
+
+    let channel = guild.channels.cache.get(guild.systemChannelID || channelID);
 
     let embed = new Discord.MessageEmbed()
         .setColor("RANDOM")
         .setTitle("TwitchBot")
-        .setDesciption("Thank you for inviting me to your guild.\nPlease note that in order to fully use my features you will need to create the following channels:\n\n📣｜announcements\n📣｜news\n📝｜mod-logs\n📣｜streaming\n👋｜welcome")
+        .setDesciption(`Thank you for inviting me to your guild.\nType ${PREFIX}help for a list of available commands.`)
         .setTimestamp()
-    defaultChannel.send(embed).then(console.log).catch(console.error);
+    channel.send(embed).then(console.log).catch(console.error);
 };
