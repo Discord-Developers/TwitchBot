@@ -11,10 +11,18 @@ module.exports = (client) => {
 
         if (newUsers[guild.id].size > 10) {
             const userlist = newUsers[guild.id].map(u => u.toString()).join(" ");
-            guild.channels.find(channel => channel.name === "general").send("Welcome our new users!\n" + userlist);
+            let channel = guild.channels.cache.get(guild.systemChannelID || channelID);
+            let embed = new Discord.MessageEmbed()
+                .setColor("RANDOM")
+                .setTitle("TwitchBot")
+                .setDesciption("Welcome our new users!")
+                .addFieldname(name="Users", value=userlist, inline = false)
             newUsers[guild.id].clear()
+                .setTimestamp()
+            channel.send(embed)
                 .then(console.log)
                 .catch(console.error);
+
         }
     })
 };
