@@ -13,7 +13,7 @@ module.exports = class AnnounceCommand extends Command {
             memberName: 'announce',
             clientPermissions: ['MANAGE_MESSAGES'],
             userPermissions: ['MANAGE_MESSAGES'],
-            description: 'Send an announcement to the specified channel',
+            description: 'Send an announcement to the announcements channel',
             examples: ['ann Hello, world!'],
             args: [
                 {

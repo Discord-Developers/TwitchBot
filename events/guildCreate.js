@@ -1,4 +1,7 @@
 const stripIndents = require('common-tags').stripIndents;
+require('dotenv').config();
+
+const PREFIX = process.env.CLIENT_PREFIX;
 
 module.exports = (client) => {
     client.guilds.channels.cache.create('👋｜welcome', { reason: 'Welcome Message Channel' })
@@ -52,7 +55,7 @@ module.exports = (client) => {
            • Thank you for inviting me to your guild.
            • I have created ththis channel for use with the guild rules.
            • Please be sure to adjust the channel permissions as preferred.
-           • Please type t!help to see a list of my available commands. 
+           • Please type ${PREFIX}help to see a list of my available commands. 
            `).then(console.log).catch(console.error));
 
     client.guilds.channels.cache
@@ -63,7 +66,7 @@ module.exports = (client) => {
           • Thank you for inviting me to your guild.
           • I have created ththis channel for use with invite logs.
           • Please be sure to adjust the channel permissions as preferred.
-          • Please type t!help to see a list of my available commands. 
+          • Please type ${PREFIX}help to see a list of my available commands. 
           `).then(console.log).catch(console.error));
 
     client.guilds.channels.cache
@@ -74,7 +77,7 @@ module.exports = (client) => {
             • Thank you for inviting me to your guild.
             • I have created ththis channel for use with moderation logs.
             • Please be sure to adjust the channel permissions as preferred.
-            • Please type t!help to see a list of my available commands. 
+            • Please type ${PREFIX}help to see a list of my available commands. 
             `).then(console.log).catch(console.error));
 
     client.guilds.channels.cache
@@ -85,7 +88,7 @@ module.exports = (client) => {
               • Thank you for inviting me to your guild.
               • I have created ththis channel for use with message logs.
               • Please be sure to adjust the channel permissions as preferred.
-              • Please type t!help to see a list of my available commands. 
+              • Please type ${PREFIX}help to see a list of my available commands. 
               `).then(console.log).catch(console.error));
 
     client.guilds.channels.cache
@@ -96,7 +99,7 @@ module.exports = (client) => {
                 • Thank you for inviting me to your guild.
                 • I have created ththis channel for use with action logs.
                 • Please be sure to adjust the channel permissions as preferred.
-                • Please type t!help to see a list of my available commands. 
+                • Please type ${PREFIX}help to see a list of my available commands. 
                 `).then(console.log).catch(console.error));
 
     client.guilds.channels.cache
@@ -107,7 +110,7 @@ module.exports = (client) => {
                   • Thank you for inviting me to your guild.
                   • I have created ththis channel for use with voice channel logs.
                   • Please be sure to adjust the channel permissions as preferred.
-                  • Please type t!help to see a list of my available commands. 
+                  • Please type ${PREFIX}help to see a list of my available commands. 
                   `).then(console.log).catch(console.error));
 
     client.guilds.channels.cache
@@ -118,7 +121,7 @@ module.exports = (client) => {
                     • Thank you for inviting me to your guild.
                     • I have created ththis channel for use with announcement notifications.
                     • Please be sure to adjust the channel permissions as preferred.
-                    • Please type t!help to see a list of my available commands. 
+                    • Please type ${PREFIX}help to see a list of my available commands. 
                     `).then(console.log).catch(console.error));
 
     client.guilds.channels.cache
@@ -129,6 +132,6 @@ module.exports = (client) => {
                       • Thank you for inviting me to your guild.
                       • I have created ththis channel for use with stream alert notifications.
                       • Please be sure to adjust the channel permissions as preferred.
-                      • Please type t!help to see a list of my available commands. 
+                      • Please type ${PREFIX}help to see a list of my available commands. 
                       `).then(console.log).catch(console.error));
 };
