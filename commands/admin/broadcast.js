@@ -27,7 +27,7 @@ module.exports = class broadcastCommand extends Command {
         msg.guild.channels.cache
             .filter(channel => channel.type === 'text')
             .forEach((textChannel) => {
-                textChannel.send(text, { tts: true }).catch(console.error);
+                textChannel.send(text, { tts: true }).then(console.log).catch(console.error);
             });
     }
 };

@@ -7,7 +7,6 @@ const readdir = promisify(require("fs").readdir);
 const Enmap = require("enmap");
 const path = require('path');
 
-
 require('./.eslintrc.json');
 require('dotenv').config();
 

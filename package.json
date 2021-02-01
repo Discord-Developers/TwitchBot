@@ -31,7 +31,8 @@
         "twitch-commando": "^1.0.12",
         "discord.js-commando": "0.11.1",
         "sqlite": "4.0.15",
-        "sqlite3": "5.0.1"
+        "sqlite3": "5.0.1",
+        "enmap": "5.8.4"
     },
     "devDependencies": {
         "nodemon": "^2.0.7"

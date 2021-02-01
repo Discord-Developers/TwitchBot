@@ -37,6 +37,6 @@ module.exports = class UserInfoCommand extends Command {
 			 • Created at: ${user.createdAt}${user.bot ? '\n • Is a bot account' : ''}
 			 • Status: ${user.presence.status}
 			 • Game: ${user.presence.game ? user.presence.game.name : 'None'}
-		`).catch(console.error);
+		`).then(console.log).catch(console.error);
 	}
 };

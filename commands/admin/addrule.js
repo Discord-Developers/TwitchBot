@@ -2,19 +2,19 @@ const stripIndents = require('common-tags').stripIndents;
 const { Command } = require('discord.js-commando');
 require('dotenv').config();
 
-CHANNEL_NAME = process.env.ANNOUNCEMENT_CHANNEL;
+CHANNEL_NAME = process.env.RULES_CHANNEL;
 
 module.exports = class AnnounceCommand extends Command {
     constructor(client) {
         super(client, {
-            name: 'announce',
-            aliases: ['ann', 'a'],
+            name: 'addrule',
+            aliases: ['ra', 'radd'],
             group: 'mod',
-            memberName: 'announce',
+            memberName: 'addrule',
             clientPermissions: ['MANAGE_MESSAGES'],
             userPermissions: ['MANAGE_MESSAGES'],
-            description: 'Send an announcement to the specified channel',
-            examples: ['ann Hello, world!'],
+            description: 'Add a rule to the rules channel',
+            examples: ['ra THIS IS AN EXAMPLE!'],
             args: [
                 {
                     key: 'text',
@@ -26,13 +26,12 @@ module.exports = class AnnounceCommand extends Command {
     }
 
     run(msg, { text }) {
+
         client.guilds.channels.cache
             .filter(channel => channel.name === CHANNEL_NAME)
             .forEach((textChannel) =>
                 textChannel.send(stripIndents`
-            **❯ TwitchBot**
-            • Notice: An announcement has been sent.
-            • Message: ${text}
+            **❯** ${text}
             `).then(console.log).catch(console.error));
     }
 };

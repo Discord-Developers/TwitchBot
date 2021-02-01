@@ -25,6 +25,6 @@ module.exports = class ChannelCommand extends Command {
 	async run(msg, args) {
 		
 		const channel = args.channel;
-		return msg.reply(`${channel.name} (${channel.id})`).catch(console.error);
+		return msg.reply(`${channel.name} (${channel.id})`).then(console.log).catch(console.error);
 	}
 };

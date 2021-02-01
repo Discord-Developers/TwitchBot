@@ -26,6 +26,6 @@ module.exports = class CreateChannelCommand extends Command {
 
 	async run(msg, { name }) {
 		const channel = await msg.guild.channels.create(name);
-		return msg.reply(`Created ${channel} (${channel.id})`).catch(console.error);
+		return msg.reply(`Created ${channel} (${channel.id})`).then(console.log).catch(console.error);
 	}
 };
