@@ -2,7 +2,7 @@ require('dotenv').config;
 PREFIX = process.env.CLIENT_PREFIX
 
 module.exports = async (client) => {
-    client.on("ready", (cli, members, channels, guilds)=> {
+    client.on("ready", (client)=> {
         
         console.log(`I am preparing to start....`);
         console.log(`I am ready! Logged in as ${client.user.tag}!`);
