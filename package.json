@@ -15,7 +15,7 @@
         "commando"
     ],
     "scripts": {
-        "start": "node index.js",
+        "start": "node --harmony index.js",
         "dev": "nodemon index.js"
     },
     "main": "index.js",
