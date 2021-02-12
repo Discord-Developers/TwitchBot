@@ -34,6 +34,7 @@ const init = async () => {// I crteated an async wrapper for my client here
 
     const sqlite = require('sqlite');
     const sqlite3 = require('sqlite3');
+    const Commando = require('discord.js-commando');
 
     client.setProvider(
         sqlite.open({ filename: 'database.db', driver: sqlite3.Database }).then(db => new Commando.SQLiteProvider(db))
