@@ -29,7 +29,7 @@ module.exports = class PurgeCommand extends Command {
         });
     }
 
-    execute(message, args) {
+    run(message, args) {
         console.log("purging messages")
 
         const amount = parseInt(args[0]) + 1;
