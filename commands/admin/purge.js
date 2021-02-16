@@ -56,7 +56,7 @@ module.exports = class PurgeCommand extends Command {
                 .addField("Total Messages Purged", deletedMessages.size, false);
 
             message.channel.send(embed);
-        }).catch(err => {
+        }).then(console.log).catch(err => {
             console.error(err);
             message.channel.send('```css\n[ERROR] Command Failed. Please contact an Administrator.\n```');
         });
