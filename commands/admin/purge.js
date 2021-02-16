@@ -45,7 +45,7 @@ module.exports = class PurgeCommand extends Command {
 
             const embed = new Discord.RichEmbed()
                 .setTitle(client.user.name)
-                .setColor(0x00AE86)
+                .setColor("RANDOM")
                 .setFooter(`${client.user.name}`, `${client.user.avatarURL}`)
                 .setThumbnail(`${client.user.avatarURL}`)
                 .setTimestamp()
