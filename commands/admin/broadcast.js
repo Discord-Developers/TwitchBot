@@ -12,9 +12,9 @@ module.exports = class broadcastCommand extends Command {
             clientPermissions: ['MANAGE_CHANNELS'],
             userPermissions: ['MANAGE_CHANNELS'],
             throttling: {
-				usages: 1,
-				duration: 10
-			},
+                usages: 1,
+                duration: 10
+            },
             description: 'Sends a global tts broadcast to all text channels in the guild.',
             examples: ['bc TESTING GLOBAL BROADCAST!'],
             args: [
@@ -31,7 +31,9 @@ module.exports = class broadcastCommand extends Command {
         msg.guild.channels.cache
             .filter(channel => channel.type === 'text')
             .forEach((textChannel) => {
-                textChannel.send(text, { tts: true }).then(console.log).catch(console.error);
+                textChannel.send(text, { tts: true })
+                    .then(console.log)
+                    .catch(console.error);
             });
     }
 };
