@@ -20,9 +20,9 @@ module.exports = class PurgeCommand extends Command {
 
             args: [
                 {
-                    key: 'numToPurge',
+                    key: 'amount',
                     label: 'number',
-                    prompt: 'Please input a number ( > 0) of messages to be deleted.',
+                    prompt: 'Please input a number between 1 and 99.',
                     type: 'integer'
                 }
             ]
