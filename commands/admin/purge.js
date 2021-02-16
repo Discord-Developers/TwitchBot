@@ -22,7 +22,7 @@ module.exports = class PurgeCommand extends Command {
                 {
                     key: 'amount',
                     label: 'number',
-                    prompt: 'Please input a number between 1 and 99.',
+                    prompt: 'Please input a number between 1 and 100.',
                     type: 'integer'
                 }
             ]
@@ -35,7 +35,7 @@ module.exports = class PurgeCommand extends Command {
         if (isNaN(amount)) {
             return message.reply('```css\n[ERROR] Please provide a valid number.\n```');
         } else if (amount <= 1 || amount > 100) {
-            return message.reply('```css\n[ERROR] You need to input a number between 1 and 99.\n```');
+            return message.reply('```css\n[ERROR] You need to input a number between 1 and 100.\n```');
         }
 
         message.channel.bulkDelete(amount, true).then(deletedMessages => {
