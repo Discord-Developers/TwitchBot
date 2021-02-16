@@ -22,7 +22,7 @@ module.exports = class PurgeCommand extends Command {
                 {
                     key: 'amount',
                     label: 'number',
-                    prompt: 'Please input a number between 1 and 100.',
+                    prompt: 'Please input a number between 0 and 100.',
                     type: 'integer'
                 }
             ]
@@ -34,20 +34,19 @@ module.exports = class PurgeCommand extends Command {
 
         if (isNaN(amount)) {
             return message.reply('```css\n[ERROR] Please provide a valid number.\n```');
-        } else if (amount <= 1 || amount > 100) {
-            return message.reply('```css\n[ERROR] You need to input a number between 1 and 100.\n```');
+        } else if (amount <= 0 || amount > 100) {
+            return message.reply('```css\n[ERROR] You need to input a number between 0 and 100.\n```');
         }
 
         message.channel.bulkDelete(amount, true).then(deletedMessages => {
-            // Filter the deleted messages with .filter()
             var botMessages = deletedMessages.filter(m => m.author.bot);
             var userPins = deletedMessages.filter(m => m.pinned);
             var userMessages = deletedMessages.filter(m => !m.author.bot);
 
             const embed = new Discord.RichEmbed()
-                .setTitle("Success")
+                .setTitle(client.user.name)
                 .setColor(0x00AE86)
-                .setFooter(`${client.user.tag}`, `${client.user.avatarURL}`)
+                .setFooter(`${client.user.name}`, `${client.user.avatarURL}`)
                 .setThumbnail(`${client.user.avatarURL}`)
                 .setTimestamp()
                 .addField("Bot Messages Purged", botMessages.size, false)
