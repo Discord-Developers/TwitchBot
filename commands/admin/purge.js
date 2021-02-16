@@ -10,12 +10,12 @@ module.exports = class PurgeCommand extends Command {
             description: 'Purge some messages from a Text Channel.',
             examples: ['purge 5'],
             guildOnly: true,
-			throttling: {
-				usages: 1,
-				duration: 3
-			},
-			clientPermissions: ['MANAGE_CHANNELS'],
-			userPermissions: ['MANAGE_CHANNELS'],
+            throttling: {
+                usages: 1,
+                duration: 3
+            },
+            clientPermissions: ['MANAGE_CHANNELS'],
+            userPermissions: ['MANAGE_CHANNELS'],
 
             args: [
                 {
@@ -28,22 +28,38 @@ module.exports = class PurgeCommand extends Command {
         });
     }
 
-    run(msg, { numToPurge }) {
-        let channel = msg.channel;
+    execute(message, args) {
+        console.log("purging messages")
 
-        if (numToPurge <= 0) {
-            return msg.reply('Purge number must be greater than 0');
+        const amount = parseInt(args[0]) + 1;
+
+        if (isNaN(amount)) {
+            return message.reply('that doesn\'t seem to be a valid number.');
+        } else if (amount <= 1 || amount > 100) {
+            return message.reply('you need to input a number between 1 and 99.');
         }
 
-        else if (channel.cache.type === 'text') {
-            return channel.fetchMessages({ limit: numToPurge })
-                .then(msgs => channel.cache.bulkDelete(msgs))
-                .then(msgs => msg.reply(`Purge deleted ${msgs.cache.size} message(s)`))
-                .then(console.log)
-                .catch(console.error);
-        }
-        else {
-            return msg.reply('```css\n[ERROR] Command Failed. Please contact an Administrator for assistance.\n```');
-        }
+        message.channel.bulkDelete(amount, true).then(deletedMessages => {
+            // Filter the deleted messages with .filter()
+            var botMessages = deletedMessages.filter(m => m.author.bot);
+            var userPins = deletedMessages.filter(m => m.pinned);
+            var userMessages = deletedMessages.filter(m => !m.author.bot);
+
+            const embed = new Discord.RichEmbed()
+                .setTitle("Success")
+                .setColor(0x00AE86)
+                .setFooter(`${client.user.tag}`, `${client.user.avatarURL}`)
+                .setThumbnail(`${client.user.avatarURL}`)
+                .setTimestamp()
+                .addField("Bot Messages Purged", botMessages.size, false)
+                .addField("User Pins Purged", userPins.size, false)
+                .addField("User Messages Purged", userMessages.size, false)
+                .addField("Total Messages Purged", deletedMessages.size, false);
+
+            message.channel.send(embed);
+        }).catch(err => {
+            console.error(err);
+            message.channel.send('there was an error trying to prune messages in this channel!');
+        });
     }
 };
