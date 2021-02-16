@@ -30,8 +30,6 @@ module.exports = class PurgeCommand extends Command {
     }
 
     run(message, args) {
-        console.log("purging messages")
-
         const amount = parseInt(args[0]) + 1;
 
         if (isNaN(amount)) {
