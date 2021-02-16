@@ -60,7 +60,7 @@ module.exports = class PurgeCommand extends Command {
             message.channel.send(embed);
         }).catch(err => {
             console.error(err);
-            message.channel.send('there was an error trying to prune messages in this channel!');
+            message.channel.send('```css\n[ERROR] Command Failed. Please contact an Administrator.\n```');
         });
     }
 };
