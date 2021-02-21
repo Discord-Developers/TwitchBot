@@ -17,23 +17,23 @@ module.exports = class AvatarCommand extends Command {
             }]
         })
     }
-    async run(client, message, args) {
+    run(msg, { user }) {
 
-        let member = message.mentions.users.first() || message.author
-
-        let avatar = member.displayAvatarURL({ size: 1024 })
+        let user = msg.mentions.users.first() || msg.author
+        let avatar = user.displayAvatarURL
 
         const embed = new Discord.MessageEmbed()
-            .setTitle(`${member.username}'s avatar`)
-            .setImage(avatar)
-            .setColor("RANDOM")
+            .setTitle(`${user.username}'s avatar`)
+            .setImage(avatar({ size: 1024 }))
+            .setURL(avatar)
+            .setColor('RANDOM')
             .setTimestamp()
-            .setFooter(`TwitchBot | twitchbot.newhorizon.dev`, 'https://images-ext-2.discordapp.net/external/6vZM6YeZGzfxd4PF_aw3UnNHZafkdNlRoLp46YJ7hkU/%3Fsize%3D256/https/cdn.discordapp.com/avatars/779442792324661249/26206ede07f20447bf380df44b429db7.png')
-        message.channel.send(embed)
+            .setFooter('TwitchBot | twitchbot.newhorizon.dev', 'https://images-ext-2.discordapp.net/external/6vZM6YeZGzfxd4PF_aw3UnNHZafkdNlRoLp46YJ7hkU/%3Fsize%3D256/https/cdn.discordapp.com/avatars/779442792324661249/26206ede07f20447bf380df44b429db7.png')
+        msg.channel.send(embed)
             .then(console.log)
             .catch(err => {
                 console.errer(err);
-                message.channel.send('There was an error with the command! Please contact a developer via our Discord!');
+                msg.channel.send('There was an error with the command! Please contact a developer via our Discord!');
             });
     }
 };
