@@ -30,11 +30,11 @@ module.exports = class broadcastCommand extends Command {
             .filter(channel => channel.type === 'text')
             .forEach((textChannel) => {
                 textChannel.send(text, { tts: true })
-                    .then(message.delete(180000))
+                    .then(msg.delete(180000))
                     .then(console.log)
                     .catch(err => {
                         console.error(err);
-                        message.channel.send('There was an error with the command! Please contact a developer via our Discord!');
+                        msg.channel.send('There was an error with the command! Please contact a developer via our Discord!');
                     })
             })
     }
