@@ -61,14 +61,13 @@ const init = async() => { // I crteated an async wrapper for my client here
     client.aliases = new Enmap(); // This sets a new Enmap for my command aliases
     client.settings = new Enmap({ name: "settings" }); //This sets a new Enmap for my settings
 
-    client.logger = require("./modules/Logger.js"); //This line makes my bot require the internal Logger.js file I have in my bot's modules folder
     require("./modules/functions.js")(client); // This line makes my bot require the internal functions.js file I have in my bot's modules folder
 
     const evtFiles = await readdir("./events/");
-    client.logger.log(`Loading a total of ${evtFiles.length} events.`);
+    console.log(`Loading a total of ${evtFiles.length} events.`);
     evtFiles.forEach(file => {
         const eventName = file.split(".")[0];
-        client.logger.log(`Loading Event: ${eventName}`);
+        console.log(`Loading Event: ${eventName}`);
         const event = require(`./events/${file}`);
         // Bind the client to any event, before the existing arguments
         // provided by the discord.js event. 
