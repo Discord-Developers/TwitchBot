@@ -20,12 +20,11 @@ module.exports = class AvatarCommand extends Command {
     run(msg, { user }) {
 
         let member = msg.mentions.users.first() || msg.author
-        let avatar = user.displayAvatarURL
 
         const embed = new Discord.MessageEmbed()
             .setTitle(`${member.username}'s avatar`)
-            .setImage(avatar({ size: 1024 }))
-            .setURL(avatar)
+            .setImage(user.avatar({ size: 1024 }))
+            .setURL(user.avatar)
             .setColor('RANDOM')
             .setTimestamp()
             .setFooter('TwitchBot | twitchbot.newhorizon.dev', 'https://images-ext-2.discordapp.net/external/6vZM6YeZGzfxd4PF_aw3UnNHZafkdNlRoLp46YJ7hkU/%3Fsize%3D256/https/cdn.discordapp.com/avatars/779442792324661249/26206ede07f20447bf380df44b429db7.png')
