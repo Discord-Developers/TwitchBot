@@ -30,7 +30,7 @@ module.exports = class broadcastCommand extends Command {
             .filter(channel => channel.type === 'text')
             .forEach((textChannel) => {
                 textChannel.send(text, { tts: true })
-                    .then(setTimeout(() => msg.delete(), 10000))
+                    .then(setTimeout(() => msg.delete(), 180000))
                     .then(console.log)
                     .catch(err => {
                         console.error(err);
