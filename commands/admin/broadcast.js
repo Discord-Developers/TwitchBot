@@ -16,7 +16,7 @@ module.exports = class broadcastCommand extends Command {
                 duration: 10
             },
             description: 'Sends a global tts broadcast to all text channels in the guild.',
-            examples: ['bc TESTING GLOBAL BROADCAST!'],
+            examples: ['bc This is a Global TTS Broadcast!'],
             args: [{
                 key: 'text',
                 prompt: 'What would you like to broadcast?',
