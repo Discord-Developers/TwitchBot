@@ -19,7 +19,6 @@ module.exports = class AvatarCommand extends Command {
     }
     run(msg, { user }) {
 
-
         const embed = new Discord.MessageEmbed()
             .setTitle(`${user.username}'s avatar`)
             .setImage(user.getAvatarURL({ size: 1024 }))
