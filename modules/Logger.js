@@ -13,15 +13,15 @@ exports.log = (content, type = "log") => {
                 return console.log(`${timestamp} ${chalk.bgBlue(type.toUpperCase())} ${content} `);
             }
         case "warn":
-            (e) => console.warn(e); {
+            {
                 return console.log(`${timestamp} ${chalk.black.bgYellow(type.toUpperCase())} ${content} `);
             }
         case "error":
-            (e) => console.error(e); {
+            {
                 return console.log(`${timestamp} ${chalk.bgRed(type.toUpperCase())} ${content} `);
             }
         case "debug":
-            (e) => console.info(e); {
+            {
                 return console.log(`${timestamp} ${chalk.green(type.toUpperCase())} ${content} `);
             }
         case "cmd":
