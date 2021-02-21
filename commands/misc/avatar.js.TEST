@@ -17,7 +17,7 @@ module.exports = class AvatarCommand extends Command {
             }]
         })
     }
-    run(msg, { member }) {
+    run(msg) {
 
         let member = msg.mentions.users.first() || msg.author
         let avatar = member.displayAvatarURL({ size: 1024 })
