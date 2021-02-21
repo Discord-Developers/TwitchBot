@@ -35,7 +35,7 @@ module.exports = class PurgeCommand extends Command {
                 var userPins = deletedMessages.filter(m => m.pinned);
                 var userMessages = deletedMessages.filter(m => !m.author.bot);
 
-                const embed = new Discord.RichEmbed()
+                const embed = new Discord.MessageEmbed()
                     .setTitle("Purge Command Issued")
                     .setDescription('The following messages have been purged.')
                     .setColor('RANDOM')
