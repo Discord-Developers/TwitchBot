@@ -67,7 +67,7 @@ const init = async() => {
         const event = require(`./events/${file}`);
 
         client.on(eventName, event.bind(null, client));
-        client.on.client.on("error", (err) => {
+        client.on("error", (err) => {
             console.log(`Discord client error '${err.code}' (${err.message})`)
         });
         client.on("warn", function(info) {
