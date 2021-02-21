@@ -9,27 +9,27 @@ exports.log = (content, type = "log") => {
     switch (type) {
         case "log":
             {
-                return console.log(e, `${timestamp} ${chalk.bgBlue(type.toUpperCase(e))} ${content} `);
+                return console.log(`${timestamp} ${chalk.bgBlue(type.toUpperCase())} ${content} `);
             }
         case "warn":
             {
-                return console.log(e, `${timestamp} ${chalk.black.bgYellow(type.toUpperCase(e))} ${content} `);
+                return console.log(`${timestamp} ${chalk.black.bgYellow(type.toUpperCase())} ${content} `);
             }
         case "error":
             {
-                return console.log(e, `${timestamp} ${chalk.bgRed(type.toUpperCase(e))} ${content} `);
+                return console.log(`${timestamp} ${chalk.bgRed(type.toUpperCase())} ${content} `);
             }
         case "debug":
             {
-                return console.log(e, `${timestamp} ${chalk.green(type.toUpperCase(e))} ${content} `);
+                return console.log(`${timestamp} ${chalk.green(type.toUpperCase())} ${content} `);
             }
         case "cmd":
             {
-                return console.log(e, `${timestamp} ${chalk.black.bgWhite(type.toUpperCase(e))} ${content}`);
+                return console.log(`${timestamp} ${chalk.black.bgWhite(type.toUpperCase())} ${content}`);
             }
         case "ready":
             {
-                return console.log(e, `${timestamp} ${chalk.black.bgGreen(type.toUpperCase(e))} ${content}`);
+                return console.log(`${timestamp} ${chalk.black.bgGreen(type.toUpperCase())} ${content}`);
             }
         default:
             throw new TypeError("Logger type must be either warn, debug, log, ready, cmd or error.");
