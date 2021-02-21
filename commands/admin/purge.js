@@ -59,7 +59,7 @@ module.exports = class PurgeCommand extends Command {
             .then(console.log)
             .catch(err => {
                 console.error(err);
-                message.channel.send('There was an error trying to purge messages in this channel!');
+                message.channel.send('There was an error with the command! Please contact a developer via our Discord!');
             });
     }
 };

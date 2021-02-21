@@ -17,13 +17,11 @@ module.exports = class broadcastCommand extends Command {
             },
             description: 'Sends a global tts broadcast to all text channels in the guild.',
             examples: ['bc TESTING GLOBAL BROADCAST!'],
-            args: [
-                {
-                    key: 'text',
-                    prompt: 'What would you like to broadcast?',
-                    type: 'string',
-                },
-            ],
+            args: [{
+                key: 'text',
+                prompt: 'What would you like to broadcast?',
+                type: 'string',
+            }, ],
         })
     };
 
@@ -33,7 +31,10 @@ module.exports = class broadcastCommand extends Command {
             .forEach((textChannel) => {
                 textChannel.send(text, { tts: true })
                     .then(console.log)
-                    .catch(console.error);
-            });
+                    .catch(err => {
+                        console.error(err);
+                        message.channel.send('There was an error with the command! Please contact a developer via our Discord!');
+                    })
+            })
     }
 };
