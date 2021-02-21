@@ -20,8 +20,8 @@ module.exports = class AvatarCommand extends Command {
     run(msg, { user }) {
 
         let embed = new Discord.MessageEmbed()
-            .setTitle(`${user.tag}s profile picture!`)
-            .setImage(user.displayAvatarURL)
+            .setTitle(`${user.username}s profile picture!`)
+            .setImage(`${user.avatarURL}`)
             .setColor('RANDOM')
             .setTimestamp()
             .setURL('https://twitchbot.newhorizon.dev/')

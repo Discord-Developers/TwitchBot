@@ -30,30 +30,34 @@ module.exports = class PurgeCommand extends Command {
     run(message, args) {
         const amount = parseInt(args[0]) + 1;
 
-        if (amount <= 1 || amount > 100) {
-            return message.reply('```css\n[ERROR] Please input a number between 1 and 100.```');
-        } else;
+        if (isNaN(amount)) {
+            return message.reply('that doesn\'t seem to be a valid number.');
+        } else if (amount <= 1 || amount > 100) {
+            return message.reply('you need to input a number between 1 and 99.');
+        }
 
-        return message.channel.bulkDelete(amount, true).then(deletedMessages => {
+        message.channel.bulkDelete(amount, true).then(deletedMessages => {
+            // Filter the deleted messages with .filter()
             var botMessages = deletedMessages.filter(m => m.author.bot);
             var userPins = deletedMessages.filter(m => m.pinned);
             var userMessages = deletedMessages.filter(m => !m.author.bot);
 
-            const embed = new Discord.MessageEmbed()
-                .setTitle('Purge Command Used')
-                .setDescription('The following amount of messages have been purged.')
-                .setColor("RANDOM")
+            const embed = new Discord.RichEmbed()
+                .setTitle("Success")
+                .setColor(0x00AE86)
+                .setFooter('TwitchBot | twitchbot.newhorizon.dev', 'https://images-ext-2.discordapp.net/external/6vZM6YeZGzfxd4PF_aw3UnNHZafkdNlRoLp46YJ7hkU/%3Fsize%3D256/https/cdn.discordapp.com/avatars/779442792324661249/26206ede07f20447bf380df44b429db7.png')
                 .setThumbnail('https://images-ext-2.discordapp.net/external/6vZM6YeZGzfxd4PF_aw3UnNHZafkdNlRoLp46YJ7hkU/%3Fsize%3D256/https/cdn.discordapp.com/avatars/779442792324661249/26206ede07f20447bf380df44b429db7.png')
                 .setTimestamp()
+                .setURL("https://twitchbot.newhorizon.dev")
                 .addField("Bot Messages Purged", botMessages.size, false)
                 .addField("User Pins Purged", userPins.size, false)
                 .addField("User Messages Purged", userMessages.size, false)
-                .addField("Total Messages Purged", deletedMessages.size, false)
-                .setFooter('TwitchBot | twitchbot.newhorizon.dev', 'https://images-ext-2.discordapp.net/external/6vZM6YeZGzfxd4PF_aw3UnNHZafkdNlRoLp46YJ7hkU/%3Fsize%3D256/https/cdn.discordapp.com/avatars/779442792324661249/26206ede07f20447bf380df44b429db7.png')
+                .addField("Total Messages Purged", deletedMessages.size, false);
 
-            message.say(embed)
-                .then(console.log)
-                .catch(console.error);
-        })
-    }
+            message.channel.send(embed);
+        }).catch(err => {
+            console.error(err);
+            message.channel.send('there was an error trying to purge messages in this channel!');
+        });
+    },
 };

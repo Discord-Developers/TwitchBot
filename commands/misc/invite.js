@@ -30,6 +30,7 @@ module.exports = class UserInfoCommand extends Command {
             .addField("Support Server", ` - [MountainT Development](${SERVER_INVITE_URL})`)
             .addField("Bot Invite", ` - [TwitchBot](${BOT_INVITE_URL})`)
             .setTimestamp()
+            .setThumbnail('https://images-ext-2.discordapp.net/external/6vZM6YeZGzfxd4PF_aw3UnNHZafkdNlRoLp46YJ7hkU/%3Fsize%3D256/https/cdn.discordapp.com/avatars/779442792324661249/26206ede07f20447bf380df44b429db7.png')
             .setURL('https://twitchbot.newhorizon.dev/')
             .setFooter(`TwitchBot | twitchbot.newhorizon.dev`, 'https://images-ext-2.discordapp.net/external/6vZM6YeZGzfxd4PF_aw3UnNHZafkdNlRoLp46YJ7hkU/%3Fsize%3D256/https/cdn.discordapp.com/avatars/779442792324661249/26206ede07f20447bf380df44b429db7.png')
         msg.say(embed)
