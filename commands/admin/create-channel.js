@@ -28,7 +28,15 @@ module.exports = class CreateChannelCommand extends Command {
 
     async run(msg, { name }) {
         const channel = await msg.guild.channels.create(name);
-        return msg.reply(`Created ${channel}[(${channel.id})]`)
+        let embed = new DynamicsCompressorNode.MessageEmbed()
+            .setTitle('Channel Created')
+            .setDescription(`Created ${channel}[(${channel.id})]`)
+            .setColor('RANDOM')
+            .setTimestamp()
+            .setURL('https://twitchbot.newhorizon.dev/')
+            .setFooter('TwitchBot | twitchbot.newhorizon.dev', 'https://images-ext-2.discordapp.net/external/6vZM6YeZGzfxd4PF_aw3UnNHZafkdNlRoLp46YJ7hkU/%3Fsize%3D256/https/cdn.discordapp.com/avatars/779442792324661249/26206ede07f20447bf380df44b429db7.png')
+            .setThumbnail('https://images-ext-2.discordapp.net/external/6vZM6YeZGzfxd4PF_aw3UnNHZafkdNlRoLp46YJ7hkU/%3Fsize%3D256/https/cdn.discordapp.com/avatars/779442792324661249/26206ede07f20447bf380df44b429db7.png')
+        msg.say(embed)
             .then(console.log)
             .catch(err => {
                 console.error(err);
