@@ -73,9 +73,6 @@ const init = async() => { // I crteated an async wrapper for my client here
         // Bind the client to any event, before the existing arguments
         // provided by the discord.js event. 
         client.on(eventName, event.bind(null, client));
-        client.on("error", (e) => console.error(e));
-        client.on("warn", (e) => console.warn(e));
-        client.on("debug", (e) => console.info(e));
 
         client.login(TOKEN).catch(console.error); // Since my client is in an async wrapper, I imported my TOKEN here
     });
