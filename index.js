@@ -14,18 +14,18 @@ require('./.eslintrc.json');
 
 
 
-require('dotenv').config();// I used dotenv to store my more secure info
-const TOKEN = process.env.CLIENT_TOKEN;// This line reads my Bot Token from dotenv
-const PREFIX = process.env.CLIENT_PREFIX;// This line reads my Client Prefix from dotenv
-const OWNER_ID = process.env.OWNER;// This line reads the bot's owner id from dotenv
+require('dotenv').config(); // I used dotenv to store my more secure info
+const TOKEN = process.env.CLIENT_TOKEN; // This line reads my Bot Token from dotenv
+const PREFIX = process.env.CLIENT_PREFIX; // This line reads my Client Prefix from dotenv
+const OWNER_ID = process.env.OWNER; // This line reads the bot's owner id from dotenv
 
 
 
-const init = async () => {// I crteated an async wrapper for my client here
+const init = async() => { // I crteated an async wrapper for my client here
 
 
 
-    const client = await new CommandoClient({// I set my client here
+    const client = await new CommandoClient({ // I set my client here
         commandPrefix: PREFIX,
         owner: OWNER_ID,
         disableEveryone: true,
@@ -53,16 +53,16 @@ const init = async () => {// I crteated an async wrapper for my client here
         // Registers all built-in groups, commands, and argument types
         .registerDefaults()
 
-        // Registers all of your commands in the ./commands/ directory
-        .registerCommandsIn(path.join(__dirname, 'commands'));
+    // Registers all of your commands in the ./commands/ directory
+    .registerCommandsIn(path.join(__dirname, 'commands'));
 
 
-    client.commands = new Enmap();// This sets a new Enmap for my commands
-    client.aliases = new Enmap();// This sets a new Enmap for my command aliases
-    client.settings = new Enmap({ name: "settings" });//This sets a new Enmap for my settings
+    client.commands = new Enmap(); // This sets a new Enmap for my commands
+    client.aliases = new Enmap(); // This sets a new Enmap for my command aliases
+    client.settings = new Enmap({ name: "settings" }); //This sets a new Enmap for my settings
 
-    client.logger = require("./modules/Logger.js");//This line makes my bot require the internal Logger.js file I have in my bot's modules folder
-    require("./modules/functions.js")(client);// This line makes my bot require the internal functions.js file I have in my bot's modules folder
+    client.logger = require("./modules/Logger.js"); //This line makes my bot require the internal Logger.js file I have in my bot's modules folder
+    require("./modules/functions.js")(client); // This line makes my bot require the internal functions.js file I have in my bot's modules folder
 
     const evtFiles = await readdir("./events/");
     client.logger.log(`Loading a total of ${evtFiles.length} events.`);
@@ -73,10 +73,13 @@ const init = async () => {// I crteated an async wrapper for my client here
         // Bind the client to any event, before the existing arguments
         // provided by the discord.js event. 
         client.on(eventName, event.bind(null, client));
+        client.on("error", (e) => console.error(e));
+        client.on("warn", (e) => console.warn(e));
+        client.on("debug", (e) => console.info(e));
 
-        client.login(TOKEN).catch(console.error);// Since my client is in an async wrapper, I imported my TOKEN here
+        client.login(TOKEN).catch(console.error); // Since my client is in an async wrapper, I imported my TOKEN here
     });
 
 };
 
-init();// Now that I've finished with the rest of my index.js file I have ended the async wrapper here
+init(); // Now that I've finished with the rest of my index.js file I have ended the async wrapper here
