@@ -19,11 +19,11 @@ module.exports = class AvatarCommand extends Command {
     }
     run(msg, { user }) {
 
-        let user = msg.mentions.users.first() || msg.author
+        let member = msg.mentions.users.first() || msg.author
         let avatar = user.displayAvatarURL
 
         const embed = new Discord.MessageEmbed()
-            .setTitle(`${user.username}'s avatar`)
+            .setTitle(`${member.username}'s avatar`)
             .setImage(avatar({ size: 1024 }))
             .setURL(avatar)
             .setColor('RANDOM')
