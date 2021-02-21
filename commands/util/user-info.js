@@ -29,17 +29,16 @@ module.exports = class UserInfoCommand extends Command {
 	async run(msg, args) {
 		const member = args.member;
 		const user = member.user;
-		
-		return msg.reply(stripIndents`
-			Info on **${user.username}#${user.discriminator}** (ID: ${user.id})
-			**❯ Member Details**
-			${member.nickname !== null ? ` • Nickname: ${member.nickname}` : ' • No nickname'}
-			 • Roles: ${member.roles.map(roles => `\`${roles.name}\``).join(', ')}
-			 • Joined at: ${member.joinedAt}
-			**❯ User Details**
-			 • Created at: ${user.createdAt}${user.bot ? '\n • Is a bot account' : ''}
-			 • Status: ${user.presence.status}
-			 • Game: ${user.presence.game ? user.presence.game.name : 'None'}
-		`).then(console.log).catch(console.error);
+		let embed = new Discord.MessageEmbed()
+		.setTitle(`Info on **${user.username}#${user.discriminator}** (ID: ${user.id}`)
+		.addField(name='Member Nickname', value=member.nickname !== null ? member.nickname : ' • No nickname')
+		.addField(name='Roles', value=member.roles.map(roles => `\`${roles.name}\``).join(', '), inline=false)
+		.addField(name='Joined At', value=`${member.joinedAt}` , inline=false)
+		.addField(name='Created At', value=`${user.createdAt}${user.bot ? '\n • Is a bot account' : ''}`, inline=false )
+		.addField(name='Status', value=`${user.presence.status}`, inline=false)
+		.addField(name='Game', value=`${user.presence.game ? user.presence.game.name : 'None'}`, inline=false)
+		msg.say(embed)
+		.then(console.log)
+		.catch(console.error);
 	}
 };
