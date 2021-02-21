@@ -1,4 +1,4 @@
-const discord = require('discord.js');
+const Discord = require('discord.js');
 const { Command } = require('discord.js-commando');
 
 module.exports = class broadcastCommand extends Command {
@@ -29,7 +29,7 @@ module.exports = class broadcastCommand extends Command {
         msg.guild.channels.cache
             .filter(channel => channel.type === 'text')
             .forEach((textChannel) => {
-                let embed = new discord.MessageEmbed()
+                let embed = new Discord.MessageEmbed()
                     .setTitle('Broadcast')
                     .setDescription(`${text}`)
                     .setURL('https://twitchbot.newhorizon.dev/')
