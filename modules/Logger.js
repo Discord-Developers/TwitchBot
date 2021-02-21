@@ -13,16 +13,16 @@ exports.log = (content, type = "log") => {
                 return console.log(`${timestamp} ${chalk.bgBlue(type.toUpperCase())} ${content} `);
             }
         case "warn":
-            {
-                return console.log((e) => console.warn(e), `${timestamp} ${chalk.black.bgYellow(type.toUpperCase())} ${content} `);
+            (e) => console.warn(e) {
+                return console.log(`${timestamp} ${chalk.black.bgYellow(type.toUpperCase())} ${content} `);
             }
         case "error":
-            {
-                return console.log((e) => console.error(e), `${timestamp} ${chalk.bgRed(type.toUpperCase())} ${content} `);
+            (e) => console.error(e) {
+                return console.log(`${timestamp} ${chalk.bgRed(type.toUpperCase())} ${content} `);
             }
         case "debug":
-            {
-                return console.log((e) => console.info(e), `${timestamp} ${chalk.green(type.toUpperCase())} ${content} `);
+            (e) => console.info(e) {
+                return console.log(`${timestamp} ${chalk.green(type.toUpperCase())} ${content} `);
             }
         case "cmd":
             {
