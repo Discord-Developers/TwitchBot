@@ -28,7 +28,7 @@ module.exports = class PurgeCommand extends Command {
     }
 
     run(message, args) {
-        const amount = parseInt(args[0]) + 1;
+        const amount = Number(args[0]) + 1;
 
         message.channel.bulkDelete(amount, true).then(deletedMessages => {
                 var botMessages = deletedMessages.filter(m => m.author.bot);
