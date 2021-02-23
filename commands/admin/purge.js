@@ -28,7 +28,7 @@ module.exports = class PurgeCommand extends Command {
     }
 
     run(message, args) {
-        const amount = Number(args[0]) + 1;
+        const amount = parseInt(args[0]) + 1;
 
         message.channel.bulkDelete(amount, true).then(deletedMessages => {
                 var botMessages = deletedMessages.filter(m => m.author.bot);
@@ -39,8 +39,8 @@ module.exports = class PurgeCommand extends Command {
                     .setTitle("Purge Command Issued")
                     .setDescription('The following messages have been purged.')
                     .setColor('RANDOM')
-                    .setFooter('TwitchBot | twitchbot.newhorizon.dev', 'https://images-ext-2.discordapp.net/external/6vZM6YeZGzfxd4PF_aw3UnNHZafkdNlRoLp46YJ7hkU/%3Fsize%3D256/https/cdn.discordapp.com/avatars/779442792324661249/26206ede07f20447bf380df44b429db7.png')
-                    .setThumbnail('https://images-ext-2.discordapp.net/external/6vZM6YeZGzfxd4PF_aw3UnNHZafkdNlRoLp46YJ7hkU/%3Fsize%3D256/https/cdn.discordapp.com/avatars/779442792324661249/26206ede07f20447bf380df44b429db7.png')
+                    .setFooter(client.user.name + ' | twitchbot.newhorizon.dev', client.user.avatarURL)
+                    .setThumbnail(client.user.avatarURL)
                     .setTimestamp()
                     .setURL("https://twitchbot.newhorizon.dev")
                     .addField("Bot Messages Purged", botMessages.size, false)
