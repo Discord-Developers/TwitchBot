@@ -30,12 +30,6 @@ module.exports = class PurgeCommand extends Command {
     run(message, args) {
         const amount = parseInt(args[0]) + 1;
 
-        if (isNaN(amount)) {
-            return message.reply('```css\n[ERROR] Please provide a valid number.\n```');
-        } else if (amount <= 0 || amount > 100) {
-            return message.reply('```css\n[ERROR] You need to input a number between 0 and 100.\n```');
-        }
-
         message.channel.bulkDelete(amount, true).then(deletedMessages => {
                 var botMessages = deletedMessages.filter(m => m.author.bot);
                 var userPins = deletedMessages.filter(m => m.pinned);
