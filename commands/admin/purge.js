@@ -28,8 +28,7 @@ module.exports = class PurgeCommand extends Command {
     }
 
     run(message, args) {
-        const amount = parseInt(args[0]) + 1;
-        console.log(args[0])
+        var amount = parseInt(args[0]) + 1;
 
         message.channel.bulkDelete(amount, true).then(deletedMessages => {
                 var botMessages = deletedMessages.filter(m => m.author.bot);
@@ -51,10 +50,10 @@ module.exports = class PurgeCommand extends Command {
 
                 message.channel.send(embed);
             })
-            .then(console.log)
+            .then(console.log(args[0]))
             .catch(err => {
                 console.error(err);
-                message.channel.send('```css\n[ERROR] There was an error with the command! Please contact a developer via our Discord!\n```');
+                message.channel.send('```css\n[ERROR] ' + err.code + ': [' + err.message + ']\n```');
             });
     }
 };
