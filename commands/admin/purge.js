@@ -53,7 +53,15 @@ module.exports = class PurgeCommand extends Command {
             .then(console.log(args[0]))
             .catch(err => {
                 console.error(err);
-                message.channel.send('There was an error with the command! Please contact a developer via our Discord!');
+                const embed = new Discord.MessagEmbed()
+                    .setTitle('Command Failed')
+                    .setColor('RANDOM')
+                    .setFooter(client.user.name + ' | twitchbot.newhorizon.dev', client.user.avatarURL)
+                    .setThumbnail(client.user.avatarURL)
+                    .setTimestamp()
+                    .setURL("https://twitchbot.newhorizon.dev")
+                    .addField('ERROR', 'There was an error with the command! Please contact a developer via our Discord!', false)
+                message.channel.send(embed);
             });
     }
 };
