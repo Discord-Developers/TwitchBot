@@ -53,7 +53,11 @@ module.exports = class PurgeCommand extends Command {
             .then(console.log(args[0]))
             .catch(err => {
                 console.error(err);
-                message.channel.send('```css\n[ERROR] ' + err.code + ': [' + err.message + ']\n```');
-            });
+                msg.guilds.channels.cache
+                    .filter(channel => channel.id === '813940493108903946')
+                    .forEach((textChannel) => {
+                        textChannel.send('```css\n [' + client.user.name + ' ERROR] ' + err.code + ': [' + err.message + ']\n```');
+                    });
+            })
     }
 };
