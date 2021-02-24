@@ -29,6 +29,7 @@ module.exports = class PurgeCommand extends Command {
 
     run(message, args) {
         const amount = parseInt(args[0]) + 1;
+        console.log(args[0])
 
         message.channel.bulkDelete(amount, true).then(deletedMessages => {
                 var botMessages = deletedMessages.filter(m => m.author.bot);
@@ -50,18 +51,10 @@ module.exports = class PurgeCommand extends Command {
 
                 message.channel.send(embed);
             })
-            .then(console.log(args[0]))
+            .then(console.log)
             .catch(err => {
                 console.error(err);
-                const embed = new Discord.MessagEmbed()
-                    .setTitle('Command Failed')
-                    .setColor('RANDOM')
-                    .setFooter(client.user.name + ' | twitchbot.newhorizon.dev', client.user.avatarURL)
-                    .setThumbnail(client.user.avatarURL)
-                    .setTimestamp()
-                    .setURL("https://twitchbot.newhorizon.dev")
-                    .addField('ERROR', 'There was an error with the command! Please contact a developer via our Discord!', false)
-                message.channel.send(embed);
+                message.channel.send('```css\n[ERROR] There was an error with the command! Please contact a developer via our Discord!\n```');
             });
     }
 };
