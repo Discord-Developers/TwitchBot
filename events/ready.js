@@ -16,7 +16,7 @@ module.exports = async(client) => {
             msg.guilds.channels.cache
                 .filter(channel => channel.id === '813940493108903946')
                 .forEach((textChannel) => {
-                    textChannel.send('```css\n[ERROR] ' + err.code + ': [' + err.message + ']\n```');
+                    textChannel.send('```css\n [' + client.user.name + ' ERROR] ' + err.code + ': [' + err.message + ']\n```');
                 });
         })
 };
