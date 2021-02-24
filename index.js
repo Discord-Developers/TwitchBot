@@ -2,7 +2,7 @@ if (Number(process.version.slice(1).split(".")[0]) < 12) throw new Error("Node 1
 
 
 // These are my imports
-const { CommandoClient, Commando } = require('discord.js-commando');
+const { CommandoClient } = require('discord.js-commando');
 const { promisify } = require("util");
 const readdir = promisify(require("fs").readdir);
 const Enmap = require("enmap");
