@@ -79,7 +79,7 @@ module.exports = (client) => {
 
     client.loadCommand = (commandName) => {
         try {
-            client.logger.log(`Loading Command: ${commandName}`);
+            console.log(`Loading Command: ${commandName}`);
             const props = require(`../commands/${commandName}`);
             if (props.init) {
                 props.init(client);
@@ -133,14 +133,14 @@ module.exports = (client) => {
 
     process.on("uncaughtException", (err) => {
         const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./");
-        client.logger.error(`Uncaught Exception: ${errorMsg}`);
+        console.log(`Uncaught Exception: ${errorMsg}`);
         console.error(err);
 
         process.exit(1);
     });
 
     process.on("unhandledRejection", err => {
-        client.logger.error(`Unhandled rejection: ${err}`);
+        console.log(`Unhandled rejection: ${err}`);
         console.error(err);
     });
 };
