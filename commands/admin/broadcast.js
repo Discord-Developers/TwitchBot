@@ -34,8 +34,8 @@ module.exports = class broadcastCommand extends Command {
                     .then(console.log)
                     .catch(err => {
                         console.error(err);
-                        msg.channel.send('There was an error with the command! Please contact a developer via our Discord!');
-                    })
+                        message.channel.send('```css\n[ERROR] ' + err.code + ': [' + err.message + ']\n```');
+                    });
             })
     }
 };

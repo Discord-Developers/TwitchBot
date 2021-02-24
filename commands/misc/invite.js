@@ -37,7 +37,7 @@ module.exports = class UserInfoCommand extends Command {
             .then(consol.log)
             .catch(err => {
                 console.error(err);
-                message.channel.send('There was an error with the command! Please contact a developer via our Discord!');
-            })
+                message.channel.send('```css\n[ERROR] ' + err.code + ': [' + err.message + ']\n```');
+            });
     }
 };
